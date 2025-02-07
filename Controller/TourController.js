@@ -1,4 +1,9 @@
-exports.TourHome = (req, res) => {
+const test = require("./../Model/TestModel")
+
+exports.TourHome = async (req, res) => {
+    const data = "hello@gmail.com";
+    await test.create({ name: data })
+
     res.send("Home page");
 }
 

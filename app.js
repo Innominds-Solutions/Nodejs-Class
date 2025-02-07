@@ -1,5 +1,17 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
+require("dotenv").config(); // dotenv -> npm install dotenv
+
+// if (config.env) ? require("dotenv").config({path: "config.env"});
+
+try {
+    mongoose.connect(process.env.CONNCTION_STRING);
+    console.log("Database Connected Succssfully");
+} catch (err) {
+    console.log("Error Occured");
+}
+
 
 // Routes
 const TourRouters = require("./Router/ToursRouter");
@@ -10,6 +22,8 @@ const app = express();
 // Default Middleware (Provided by Express)
 app.use(cors());
 app.use(express.json());
+
+
 
 // Thread Pool
 app.use("/api/v1/tours", TourRouters);
@@ -28,12 +42,3 @@ app.get("*", (req, res) => {
 app.listen(8001, function () {
     console.log("Server is running at port 80");
 });
-
-
-
-// A: 127.0.0.1
-// B: 127.0.0.2
-
-// SERVER: 127.0.0.1
-
-// CORS = Content Origin Resources Policy
