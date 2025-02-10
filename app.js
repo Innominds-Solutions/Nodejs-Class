@@ -3,6 +3,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config(); // dotenv -> npm install dotenv
 
+const categoryRouter = require("./Router/CategoryRouter");
+
 // if (config.env) ? require("dotenv").config({path: "config.env"});
 
 try {
@@ -13,26 +15,24 @@ try {
 }
 
 
-// Routes
-const TourRouters = require("./Router/ToursRouter");
-const userRouter = require("./Router/userRouter");
 
 const app = express();
 
 // Default Middleware (Provided by Express)
+
+// used to Block third party ip address 
 app.use(cors());
-app.use(express.json());
+
+// accepts data from the req.body incomming or sending from the POST request
+app.use(express.json()); 
 
 
+// Routes
+app.use("/api/v1/category", categoryRouter);
 
-// Thread Pool
-app.use("/api/v1/tours", TourRouters);
-app.use("/api/v1/user", userRouter);
 
 // 404 not found
-
-// * start denotes everythings or all 
-app.get("*", (req, res) => {
+app.get("*", (req, res) => { // * start denotes everythings or all 
     res.status(200).json({
         status: "Failed",
         message: "Entered Wrong Route"
