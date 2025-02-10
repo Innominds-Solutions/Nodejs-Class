@@ -1,0 +1,102 @@
+[
+    {
+        "name": "Food",
+        "description": "All about culinary delights and recipes.",
+        "isActive": true
+    },
+    {
+        "name": "Tech",
+        "description": "Latest trends in technology and gadgets.",
+        "isActive": true
+    },
+    {
+        "name": "Data Science",
+        "description": "Insights, tutorials, and news in data science.",
+        "isActive": true
+    },
+    {
+        "name": "Machine Learning",
+        "description": "Discussions and resources on machine learning.",
+        "isActive": true
+    },
+    {
+        "name": "Travel",
+        "description": "Explore travel guides, tips, and destination highlights.",
+        "isActive": true
+    },
+    {
+        "name": "Health",
+        "description": "Health tips, wellness advice, and fitness routines.",
+        "isActive": true
+    },
+    {
+        "name": "Sports",
+        "description": "Updates, scores, and insights on various sports.",
+        "isActive": true
+    },
+    {
+        "name": "Entertainment",
+        "description": "News and reviews on movies, TV shows, and celebrity gossip.",
+        "isActive": true
+    },
+    {
+        "name": "Fashion",
+        "description": "Latest fashion trends and style guides.",
+        "isActive": true
+    },
+    {
+        "name": "Education",
+        "description": "Resources, tutorials, and educational news.",
+        "isActive": true
+    },
+    {
+        "name": "Finance",
+        "description": "Advice, news, and trends in finance and investments.",
+        "isActive": true
+    },
+    {
+        "name": "Art",
+        "description": "Explorations into fine arts, galleries, and exhibitions.",
+        "isActive": true
+    },
+    {
+        "name": "Music",
+        "description": "Latest in music trends, reviews, and artist interviews.",
+        "isActive": true
+    },
+    {
+        "name": "Gaming",
+        "description": "Updates and reviews on video games and e-sports.",
+        "isActive": true
+    },
+    {
+        "name": "Literature",
+        "description": "Discussions on books, authors, and literary events.",
+        "isActive": true
+    },
+    {
+        "name": "Business",
+        "description": "Insights on entrepreneurship, management, and strategy.",
+        "isActive": true
+    },
+    {
+        "name": "Lifestyle",
+        "description": "Articles on personal style, habits, and daily living.",
+        "isActive": true
+    },
+    {
+        "name": "Environment",
+        "description": "Updates on sustainability and environmental issues.",
+        "isActive": true
+    },
+    {
+        "name": "Politics",
+        "description": "Political news, analysis, and commentary.",
+        "isActive": true
+    },
+    {
+        "name": "History",
+        "description": "Historical insights and stories from the past.",
+        "isActive": true
+    }
+]
