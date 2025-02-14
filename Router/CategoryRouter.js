@@ -8,7 +8,7 @@ router.get('/', ReadCategory) // READ
 router.post("/upload-category", UploadCategory);
 router.get("/:slug", GetOneCategory);
 router.delete("/:slug", DeleteCategory);
-router.patch("/:slug", UpdateCategory);
+router.patch("/:slug", UpdateCategory); 
 router.post("/mass-upload", MassUpload);
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const categoryModel = require("./../Model/CategoryModel");
 const fs = require("fs");
+const CatchAsync = require("./../Utils/CatchAsync"); // Handeling Async Error
 
-exports.ReadCategory = async (req, res) => {
-
+exports.ReadCategory = CatchAsync(async (req, res) => {
     const Categories = await categoryModel.find({
-        isActive: true
+        name: "Finance"
     });
 
     res.status(200).json({
@@ -12,24 +12,34 @@ exports.ReadCategory = async (req, res) => {
         length: Categories.length,
         Categories
     })
-}
+
+})
+
 
 exports.UploadCategory = async (req, res) => {
-    const { Name, Description, slug } = req.body; // name, description
-    // const Name = req.body.Food;
-    // const Description = req.body.Description;
+    try {
 
-    const UploadedCategory = await categoryModel.create({
-        name: Name,
-        description: Description,
-        isActive: true
-    })
+        const { Name, Description, isActive } = req.body; // name, description
+        // const Name = req.body.Food;
+        // const Description = req.body.Description;
 
+        // await pause the execution of code until the it holds the value of executed blocks
+        const UploadedCategory = await categoryModel.create({
+            name: Name,
+            description: Description,
+            isActive: isActive
+        });
 
-    res.status(201).json({
-        status: "Success",
-        UploadedCategory
-    })
+        console.log(UploadedCategory)
+        // initial state -> awaiting 
+
+        res.status(201).json({
+            status: "Success",
+            UploadedCategory
+        });
+    }catch(err){
+        console.log("Error", err);
+    }
 }
 
 exports.GetOneCategory = async (req, res) => {
@@ -67,6 +77,12 @@ exports.UpdateCategory = async (req, res) => {
         name: Name,
     });
 
+    // Category.description = "hello world"
+    // Description = "how are you"
+    // Category.description = Description;
+
+
+    // Category.description = "how are you"
     Category.description = Description;
     Category.isActive = isActive;
 
