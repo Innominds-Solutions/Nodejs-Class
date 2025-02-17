@@ -10,7 +10,11 @@ const BlogsSchema = new mongoose.Schema({
         required: true,
         ref: "categoryModel"
     },
-    title:{
+    Image: {
+        type: String,
+        require: true
+    },
+    title: {
         type: String,
         require: true
     },

@@ -18,6 +18,7 @@ exports.ReadCategory = CatchAsync(async (req, res) => {
 
 exports.UploadCategory = async (req, res) => {
     try {
+        console.log(req.body, req.file);
 
         const { Name, Description, isActive } = req.body; // name, description
         // const Name = req.body.Food;

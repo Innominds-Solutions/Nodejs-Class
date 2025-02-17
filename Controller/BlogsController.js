@@ -15,6 +15,7 @@ exports.ReadBlogs = CatchAsync(async (req, res, next) => {
 
 exports.uploadBlogs = CatchAsync(async (req, res, next) => {
     const { Category, title, content, isPublish } = req.body;
+    
     const ChoosenCategory = await CategoryModel.findOne({
         name: Category
     })
@@ -24,6 +25,7 @@ exports.uploadBlogs = CatchAsync(async (req, res, next) => {
     const UploadBlogs = await BlogsModel.create({
         title: title,
         content: content,
+        Image: req.file.filename,
         categoryId: ChoosenCategory._id,
         isPublish: isPublish,
         slug: slug
