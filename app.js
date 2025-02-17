@@ -10,7 +10,8 @@ require("dotenv").config(); // dotenv -> npm install dotenv
 
 const categoryRouter = require("./Router/CategoryRouter");
 const blogsRouter = require("./Router/BlogsRouter");
-
+const ViewRouter = require("./Router/ViewRouter");
+const AuthRouter = require("./Router/AuthRouter")
 
 try {
     mongoose.connect(process.env.CONNCTION_STRING);
@@ -35,7 +36,7 @@ app.set('view engine', "ejs");
 
 // giving the absolute path of the views where the DOM content(.ejs files) are located 
 app.set("views", path.join(__dirname, "views"));
-app.set(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // express.static(path.join(__dirname, ))
 app.use(layouts);
@@ -48,20 +49,20 @@ app.use(express.json());
 // Routes
 app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/blogs", blogsRouter);
+app.use("/api/v1/auth", AuthRouter);
+app.use("/", ViewRouter);
 
-app.get("/", (req, res) => {
-    res.render("Pages/Home/Home");
-});
-
-app.get("/about", (req, res) => {
-    res.render("Pages/About/About");
-});
 
 // 404 not found
 app.get("*", (req, res) => {
     res.render("NotFound/NotFound");
 });
 
+// localhost:8001/api/v1/blogs/upload-blogs
+// Address = localhost:8001/
+// Prefix = /api/v1/blogs/ 
+// Endpoints = upload-blogs
+
 app.listen(8001, function () {
-    console.log("Server is running at port 8001");
+    console.log(`Server is running at port localhost`);
 });
