@@ -1,0 +1,49 @@
+<div id="user-account-signup">
+    <div>
+        <label for="">username</label>
+        <input type="text" name="" id="username">
+    </div>
+    <div>
+        <label for="">Email</label>
+        <input type="email" name="" id="email">
+    </div>
+    <div>
+        <label for="">password</label>
+        <input type="password" name="" id="password">
+    </div>
+    <div>
+        <label for="">passwordConfirm</label>
+        <input type="password" name="" id="passwordConfirm">
+    </div>
+    <button id="Signup-button">Signup Button</button>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const SubmitButton = document.getElementById("Signup-button");
+    SubmitButton.addEventListener("click", async () => {
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const passwordConfirm = document.getElementById("passwordConfirm").value;
+
+        console.log(username, email, password, passwordConfirm);
+        const response = await axios({
+            method: "POST",
+            url: "http://localhost:8001/api/v1/auth/signup",
+            data: {
+                username,
+                email,
+                password,
+                passwordConfirm,
+            }
+        });
+
+        if (response.data.status == "success") {
+            alert("Loggin Successfull");
+        }
+
+
+    })
+
+</script>

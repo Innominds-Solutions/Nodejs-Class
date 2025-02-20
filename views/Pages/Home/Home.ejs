@@ -1,0 +1,62 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src=""></script>
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">Trend Blogger</h2>
+        <span class="home-subtitle">Your source of great content</span>
+    </div>
+</section>
+
+<section class="about container" id="about">
+    <div class="contentBx">
+        <h2 class="titleText">Catch up with the trending topics</h2>
+        <p class="title-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eos consequuntur voluptate dolorum totam
+            provident ducimus cupiditate dolore doloribus repellat. Saepe ad fugit similique quis quam. Odio suscipit
+            incidunt distinctio.
+            <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed blanditiis libero pariatur ipsum suscipit
+            voluptates aut, repellendus quos dolor autem, natus laboriosam consectetur maxime cumque, sunt magni optio?
+            Veritatis, ea?
+        </p>
+        <a href="#" class="btn2">Read more</a>
+    </div>
+    <div class="imgBx">
+        <img src="images/about.png" alt="" class="fitBg">
+    </div>
+</section>
+
+<div class="post-filter container">
+    <span class="filter-item active-filter" data-filter="all">All</span>
+    <span class="filter-item" data-filter="tech">Tech</span>
+    <span class="filter-item" data-filter="food">Food</span>
+    <span class="filter-item" data-filter="news">News</span>
+</div>
+
+<div class="post container">
+
+
+
+
+    <% if(datas) { %>
+        <% datas.forEach( data => {  %>
+            <div class="post-box tech">
+                <img src="images/img1.jpg" alt="" class="post-img">
+                <h2 class="category"> <%= data.category %> </h2>
+                <a href="#" class="post-title"> <%= data.postTitle %> </a>
+                <span class="post-date"> <%= data.postDate %> </span>
+                <p class="post-description"><%= data.postDescription %></p>
+                <div class="profile">
+                    <img src="images/testi1.jpg" alt="" class="profile-img">
+                    <span class="profile-name"><%= data.profileName %></span>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
+    
+
+
+
+</div>
