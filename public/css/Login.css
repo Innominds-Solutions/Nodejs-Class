@@ -1,0 +1,66 @@
+    /* Container for overall layout */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+
+    /* Login form container */
+    #user-account-login {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        width: 320px;
+    }
+
+    /* Form Heading */
+    #user-account-login h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    /* Form Group */
+    #user-account-login div {
+        margin-bottom: 1rem;
+    }
+
+    /* Input Styles */
+    #user-account-login input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #user-account-login input:focus {
+        border-color: #9b59b6;
+        box-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
+        outline: none;
+    }
+
+    /* Button Styles */
+    #Login-button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #9b59b6;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #Login-button:hover {
+        background-color: #8e44ad;
+    }
+
+    footer{
+        margin-top: 0;
+    }

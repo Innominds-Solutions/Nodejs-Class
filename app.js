@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const layouts = require("express-ejs-layouts");
 const cookieParser = require("cookie-parser");
+const bcrypt = require("bcrypt");
 
 // if (config.env) ? require("dotenv").config({path: "config.env"});
 require("dotenv").config(); // dotenv -> npm install dotenv
@@ -12,7 +13,8 @@ require("dotenv").config(); // dotenv -> npm install dotenv
 const categoryRouter = require("./Router/CategoryRouter");
 const blogsRouter = require("./Router/BlogsRouter");
 const ViewRouter = require("./Router/ViewRouter");
-const AuthRouter = require("./Router/AuthRouter")
+const AuthRouter = require("./Router/AuthRouter");
+const userModel = require("./Model/UserModel");
 
 try {
     mongoose.connect(process.env.CONNCTION_STRING);
@@ -59,6 +61,22 @@ app.use("/", ViewRouter);
 app.get("*", (req, res) => {
     res.render("NotFound/NotFound");
 });
+
+// seeding the admin
+(async () => {
+    try {
+        await userModel.create({
+            email: process.env.ADMIN_EMAIL,
+            password: await bcrypt.hash(process.env.ADMIN_PASSWORD, Number(process.env.PASSWORD_SALT)),
+            role: process.env.ADMIN_ROLE
+        });
+
+        console.log("Admin Seeded Successfully");
+    } catch (err) {
+        console.log(err)
+    }
+
+})();
 
 // localhost:8001/api/v1/blogs/upload-blogs
 // Address = localhost:8001/

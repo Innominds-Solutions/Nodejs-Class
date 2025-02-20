@@ -49,9 +49,6 @@ a{
 
 /* Header */
 header{
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 200;
 }
@@ -88,7 +85,7 @@ header.shadow .logo{
     text-transform: uppercase;
     font-weight: 500;
     border-radius: 4px;
-    background: var(--second-color);
+    background: #8e44ad;
     color: var(--bg-color);
 }
 
@@ -100,7 +97,7 @@ header.shadow .logo{
 .home{
     width: 100%;
     min-height: 440px;
-    background: url("images/banner2.png");
+    background: url("/images/banner2.png");
     display: grid;
     justify-content: center;
     align-items: center;
@@ -276,7 +273,7 @@ footer{
     height: auto;
     padding: 50px 100px;
     margin-top: 3rem;
-    background: #111;
+    background: #191919;
     display: flex;
     font-family: sans-serif;
     justify-content: space-between;

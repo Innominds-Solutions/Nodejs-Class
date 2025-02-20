@@ -16,6 +16,8 @@ exports.ReadBlogs = CatchAsync(async (req, res, next) => {
 exports.uploadBlogs = CatchAsync(async (req, res, next) => {
     const { Category, title, content, isPublish } = req.body;
     
+    console.log(req.body);
+    
     const ChoosenCategory = await CategoryModel.findOne({
         name: Category
     })

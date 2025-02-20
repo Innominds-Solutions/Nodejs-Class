@@ -101,8 +101,8 @@ exports.Login = CatchAsync(async (req, res) => {
 });
 
 exports.isLoggedIn = CatchAsync(async (req, res, next) => {
-    if (req.cookies.jwt) {
-        const DecodedId = jwt.verify(req.cookies.jwt, process.env.HASH_STRING);
+    if (req.cookies.jwt_authtentication_signature) {
+        const DecodedId = jwt.verify(req.cookies.jwt_authtentication_signature, process.env.HASH_STRING);
 
         // id or _id
         const user = await userModel.findOne({
@@ -117,7 +117,15 @@ exports.isLoggedIn = CatchAsync(async (req, res, next) => {
     next();
 });
 
+exports.isAdminLoggedIn = CatchAsync(async (req, res, next) => {
+    const user = res.locals.user;
 
+    if (!(user.role === "admin")) {
+        res.send("Route Not Found");
+    }
+
+    next();
+})
 
 exports.UserProfile = CatchAsync(async (req, res, next) => {
     const user = res.locals.user;

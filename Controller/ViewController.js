@@ -1,4 +1,5 @@
 const CatchAsync = require("../Utils/CatchAsync");
+const CategoryModel = require("../Model/CategoryModel");
 
 exports.HomePage = CatchAsync(async (req, res) => {
     const datas = [
@@ -38,4 +39,15 @@ exports.LoginPage = CatchAsync(async (req, res) => {
 
 exports.SignupPage = CatchAsync(async (req, res) => {
     res.render("Pages/Authentication/Signup/Signup.ejs");
+})
+
+exports.AddBlogsPage = CatchAsync(async (req, res) => {
+    const CategoryList = await CategoryModel.find({
+        isActive: true
+    });
+
+    
+    res.render("Pages/Add_Blogs/Add_Blogs.ejs", {
+        CategoryList
+    });
 })

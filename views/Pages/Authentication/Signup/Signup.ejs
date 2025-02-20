@@ -1,21 +1,26 @@
-<div id="user-account-signup">
-    <div>
-        <label for="">username</label>
-        <input type="text" name="" id="username">
+<link rel="stylesheet" href="./css/Signup.css">
+
+<div class="signup-container">
+    <div id="user-account-signup">
+        <h2>Signup</h2>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter your username">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password">
+        </div>
+        <div>
+            <label for="passwordConfirm">Confirm Password</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm your password">
+        </div>
+        <button id="Signup-button">Signup</button>
     </div>
-    <div>
-        <label for="">Email</label>
-        <input type="email" name="" id="email">
-    </div>
-    <div>
-        <label for="">password</label>
-        <input type="password" name="" id="password">
-    </div>
-    <div>
-        <label for="">passwordConfirm</label>
-        <input type="password" name="" id="passwordConfirm">
-    </div>
-    <button id="Signup-button">Signup Button</button>
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

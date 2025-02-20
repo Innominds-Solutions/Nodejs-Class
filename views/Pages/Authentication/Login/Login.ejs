@@ -1,12 +1,16 @@
-<div id="user-account-login">
-    <div>
-        <input type="email" name="" id="email">
-    </div>
-    <div>
-        <input type="password" name="" id="password">
-    </div>
+<link rel="stylesheet" href="./css/Login.css">
 
-    <button id="Login-button">Login</button>
+<div class="login-container">
+    <div id="user-account-login">
+        <h2>Login</h2>
+        <div>
+            <input type="email" name="email" id="email" placeholder="Email">
+        </div>
+        <div>
+            <input type="password" name="password" id="password" placeholder="Password">
+        </div>
+        <button id="Login-button">Login</button>
+    </div>
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -26,7 +30,7 @@
             }
         })
 
-        if(response.data.status == "success"){
+        if (response.data.status == "success") {
             console.log("Logged in successfully");
         }
     })
