@@ -15,6 +15,7 @@ const blogsRouter = require("./Router/BlogsRouter");
 const ViewRouter = require("./Router/ViewRouter");
 const AuthRouter = require("./Router/AuthRouter");
 const userModel = require("./Model/UserModel");
+const AdminRouter = require("./Router/AdminRouter");
 
 try {
     mongoose.connect(process.env.CONNCTION_STRING);
@@ -55,7 +56,7 @@ app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/blogs", blogsRouter);
 app.use("/api/v1/auth", AuthRouter);
 app.use("/", ViewRouter);
-
+app.use("/admin", AdminRouter);
 
 // 404 not found
 app.get("*", (req, res) => {

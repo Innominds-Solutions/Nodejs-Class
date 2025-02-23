@@ -10,6 +10,11 @@ const BlogsSchema = new mongoose.Schema({
         required: true,
         ref: "categoryModel"
     },
+    userID: {
+        type: mongoose.Schema.ObjectId,
+        required: true,
+        ref: "userModel"
+    },
     Image: {
         type: String,
         require: true

@@ -1,30 +1,44 @@
 const CatchAsync = require("../Utils/CatchAsync");
 const CategoryModel = require("../Model/CategoryModel");
+const blogsModel = require("../Model/BlogsModel");
+const categoryModel = require("../Model/CategoryModel");
 
 exports.HomePage = CatchAsync(async (req, res) => {
-    const datas = [
-        {
-            postImg: "images/img2.jpg",
-            category: "Tech",
-            postTitle: "How to create the best UI with Figma",
-            postDate: "12 Feb 2022",
-            postDescription: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.",
-            profileImg: "images/testi1.jpg",
-            profileName: "MKHB"
-        },
-        {
-            postImg: "images/img3.jpg",
-            category: "Food",
-            postTitle: "How to Learn Node.js?",
-            postDate: "12 Feb 2022",
-            postDescription: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.",
-            profileImg: "images/testi1.jpg",
-            profileName: "MKHB"
-        },
-    ];
+    const page = Number(req.query.page);
+    const search_field = req.query.searchQuery;
+    const limit = 3;
+    const urlCategory = req.query.category;
 
+    console.log(search_field, page)
+
+
+    const category = await categoryModel.find({ isActive: true }).select("name");
+    // console.log(category)
+
+    const searched_array = [];
+
+    // page = 3 (1 - 10, 10 - 20, 20 - 30) (1, 2, 3, ...)
+    let datas = await blogsModel.aggregate([
+        {
+            $match: search_field ? {
+                $or: [
+                    { title: { $regex: search_field, $options: 'i' } }, // Hello, hello 
+                    { content: { $regex: search_field, $options: 'i' } },
+                    { slug: { $regex: search_field, $options: 'i' } },
+                ]
+            } : {}
+        },
+        { $skip: page ? Number((Number(page) - 1) * limit) : 0 },
+        { $limit: limit },
+    ]); // aggregate pipeline
+
+
+
+
+    console.log(datas)
     res.render("Pages/Home/Home", {
-        datas: datas
+        datas: datas,
+        categories: category
     });
 });
 
@@ -46,7 +60,7 @@ exports.AddBlogsPage = CatchAsync(async (req, res) => {
         isActive: true
     });
 
-    
+
     res.render("Pages/Add_Blogs/Add_Blogs.ejs", {
         CategoryList
     });

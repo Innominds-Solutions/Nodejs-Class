@@ -28,35 +28,93 @@
     </div>
 </section>
 
-<div class="post-filter container">
+<div class="post-filter container" style="overflow: auto;">
     <span class="filter-item active-filter" data-filter="all">All</span>
-    <span class="filter-item" data-filter="tech">Tech</span>
-    <span class="filter-item" data-filter="food">Food</span>
-    <span class="filter-item" data-filter="news">News</span>
+    <% categories.forEach(category=> { %>
+        <button style="color:black; width: fit-content;" href="http://localhost:8001/?category=<%= category.name %>"
+            class="filter-item" id="category">
+            <%= category.name %>
+        </button>
+        <% }) %>
 </div>
 
 <div class="post container">
 
-
-
-
     <% if(datas) { %>
-        <% datas.forEach( data => {  %>
+        <% datas.forEach( data=> { %>
             <div class="post-box tech">
                 <img src="images/img1.jpg" alt="" class="post-img">
-                <h2 class="category"> <%= data.category %> </h2>
-                <a href="#" class="post-title"> <%= data.postTitle %> </a>
-                <span class="post-date"> <%= data.postDate %> </span>
-                <p class="post-description"><%= data.postDescription %></p>
+                <h2 class="category">
+                   <%= data.category %>
+                </h2>
+                <a href="#" class="post-title">
+                    title
+                    <!-- <%= data.title %> -->
+                </a>
+                <p class="post-description">
+                    content
+                    <!-- <%= data.content %> -->
+                </p>
                 <div class="profile">
                     <img src="images/testi1.jpg" alt="" class="profile-img">
-                    <span class="profile-name"><%= data.profileName %></span>
+                    <span class="profile-name">
+                        <%= data.profileName %>
+                    </span>
                 </div>
             </div>
         <% }) %>
     <% } %>
-    
 
-
-
+                    <div style="width: 100%; display: flex;">
+                        <button id="page-decrement" style="width: 50%;">previous</button>
+                        <button id="page-increment" style="width: 50%;">Next</button>
+                    </div>
 </div>
+
+<script>
+    sessionStorage.setItem("current_page", 1);
+    sessionStorage.setItem("category", "all");
+
+    const page_increment = document.getElementById("page-increment");
+    const page_decrement = document.getElementById("page-decrement");
+    const categories = document.querySelectorAll("#category");
+
+    page_increment.addEventListener("click", (el) => {
+        el.preventDefault(); // preavents browser from reloading
+
+        const page = sessionStorage.getItem("current_page");
+        const nextPage = Number(page) + 1;
+        const PageNumber = page ? nextPage : sessionStorage.setItem("current_page", 1);
+
+        sessionStorage.setItem("current_page", nextPage);
+
+        window.location.assign(`http://localhost:8001/?page=${nextPage}`);
+    })
+
+    page_decrement.addEventListener("click", (el) => {
+        el.preventDefault(); // preavents browser from reloading
+
+        const page = sessionStorage.getItem("current_page");
+        const nextPage = Number(page) - 1 == 0 ? 1 : Number(page) - 1;
+        const PageNumber = page ? nextPage : sessionStorage.setItem("current_page", 1);
+
+        sessionStorage.setItem("current_page", nextPage);
+
+        window.location.assign(`http://localhost:8001/?page=${nextPage}`);
+    })
+
+    categories.forEach(category => {
+        category.addEventListener("click", (el) => {
+            const clicked_category = el.target.innerText ? el.target.innerText : "all";
+
+            sessionStorage.setItem("category", clicked_category);
+
+            const page = sessionStorage.getItem("page")
+            const currentPage = page ? page : 1;
+
+            window.location.assign(`http://localhost:8001/?category=${clicked_category}&page=${currentPage}`);
+        })
+    })
+
+
+</script>

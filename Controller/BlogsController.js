@@ -14,6 +14,8 @@ exports.ReadBlogs = CatchAsync(async (req, res, next) => {
 });
 
 exports.uploadBlogs = CatchAsync(async (req, res, next) => {
+    console.log(res.locals.user);
+    
     const { Category, title, content, isPublish } = req.body;
     
     console.log(req.body);

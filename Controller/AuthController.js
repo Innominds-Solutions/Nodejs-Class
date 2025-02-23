@@ -101,6 +101,8 @@ exports.Login = CatchAsync(async (req, res) => {
 });
 
 exports.isLoggedIn = CatchAsync(async (req, res, next) => {
+    // console.log(req.cookies);
+
     if (req.cookies.jwt_authtentication_signature) {
         const DecodedId = jwt.verify(req.cookies.jwt_authtentication_signature, process.env.HASH_STRING);
 
@@ -109,6 +111,7 @@ exports.isLoggedIn = CatchAsync(async (req, res, next) => {
             _id: DecodedId.id
         });
 
+        console.log("adf" + user)
         res.locals.user = user;
     } else {
         console.log("Unauthorized");
@@ -119,7 +122,7 @@ exports.isLoggedIn = CatchAsync(async (req, res, next) => {
 
 exports.isAdminLoggedIn = CatchAsync(async (req, res, next) => {
     const user = res.locals.user;
-
+    console.log(user)
     if (!(user.role === "admin")) {
         res.send("Route Not Found");
     }
@@ -132,7 +135,17 @@ exports.UserProfile = CatchAsync(async (req, res, next) => {
     res.status(200).json({
         user
     })
-})
+});
+
+exports.loggout = CatchAsync(async(req, res) => {
+    console.log(req.cookies)
+    if(req.cookies.jwt_authtentication_signature){
+        res.clearCookie("jwt_authtentication_signature")
+    }
+
+    res.redirect("/");
+});
+
 // Login
 // signup
 // delete user id
