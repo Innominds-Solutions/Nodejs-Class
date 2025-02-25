@@ -2,24 +2,16 @@
 
 <div class="blogs-container">
     <div id="blog-post">
-        <h2>Lorem Ipsum Dolor Sit Amet</h2>
-        <div class="blog-meta">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </div>
-        <img src="/images/blog-banner.jpg" alt="Blog Banner" />
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt
-            consectetur, nisi nisl lacinia mi, ac cursus sem odio et arcu.</p>
-        <h3>Lorem Ipsum Section</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel urna at elit hendrerit bibendum in non
-            lacus. Donec ac dolor eu libero ullamcorper consequat.</p>
-        <h3>Another Section</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lectus vel nisi vestibulum
-            consequat.</p>
-        <pre>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Vestibulum imperdiet, urna at vehicula sodales, lacus sem pulvinar urna, a fringilla sapien erat eget lorem.
-      </pre>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et velit vel risus convallis condimentum.
-        </p>
+        <% if(blog) {%>
+            <h2>
+                <%= blog.title %>
+            </h2>
+            <div class="blog-meta">
+                <%= blog.content %>
+            </div>
+            <% } else { %>
+                <h1>Blogs Not Found</h1>
+        <% } %>
+
     </div>
 </div>

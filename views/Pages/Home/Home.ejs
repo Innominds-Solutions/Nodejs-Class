@@ -39,21 +39,24 @@
 </div>
 
 <div class="post container">
-
     <% if(datas) { %>
-        <% datas.forEach( data=> { %>
+        <% datas.forEach( data => { %>
             <div class="post-box tech">
                 <img src="images/img1.jpg" alt="" class="post-img">
                 <h2 class="category">
-                   <%= data.category %>
+                   <% if(data.category) {%>
+                        <%= data.category.name %>
+                    <% } else { %>
+                        All    
+                    <% } %>
                 </h2>
                 <a href="#" class="post-title">
                     title
-                    <!-- <%= data.title %> -->
+                    <%= data.title %>
                 </a>
                 <p class="post-description">
                     content
-                    <!-- <%= data.content %> -->
+                    <%= data.content %>
                 </p>
                 <div class="profile">
                     <img src="images/testi1.jpg" alt="" class="profile-img">
@@ -61,7 +64,11 @@
                         <%= data.profileName %>
                     </span>
                 </div>
+                <div style="width:100%;">
+                    <a href="/<%= data.slug %>" style="width:100%;"> <button> Read Blogs </button> </a>
+                </div>
             </div>
+        
         <% }) %>
     <% } %>
 
