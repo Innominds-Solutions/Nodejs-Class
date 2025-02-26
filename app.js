@@ -55,7 +55,13 @@ app.use(express.json());
 app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/blogs", blogsRouter);
 app.use("/api/v1/auth", AuthRouter);
+
 app.use("/", ViewRouter);
+// localhost:8001/hello-world
+// app.use("prefix", Router_Path);
+
+app.set("layout", "Admin/AdminLayout")
+
 app.use("/admin", AdminRouter);
 
 // 404 not found

@@ -27,6 +27,7 @@ exports.uploadBlogs = CatchAsync(async (req, res, next) => {
     const slug = title.replaceAll(" ", "-") + "-" + Date.now();
 
     const UploadBlogs = await BlogsModel.create({
+        userID: res.locals.user._id,
         title: title,
         content: content,
         Image: req.file.filename,

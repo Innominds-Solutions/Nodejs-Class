@@ -30,9 +30,9 @@ exports.HomePage = CatchAsync(async (req, res) => {
         },
         {
             $lookup: { // looks for that model which is linked to our category model ('from')
-                from: "categorymodels",
-                localField: "categoryId",
-                foreignField: "_id",
+                from: "categorymodels",  // from which model
+                localField: "categoryId", // by which our category_id is stored in blogsmodel
+                foreignField: "_id", // 
                 as: "category"
             }
         },
@@ -82,7 +82,7 @@ exports.GetOneBlogs = CatchAsync(async (req, res) => {
 
     const blog = await blogsModel.findOne({
         slug: slug,
-        isPublish: false
+        isPublish: true
     });
 
     console.log(blog);

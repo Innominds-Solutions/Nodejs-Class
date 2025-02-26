@@ -1,0 +1,93 @@
+<style>
+    .table-components {
+        margin-left: 250px;
+    }
+</style>
+
+<section class="table-components">
+    <div class="container-fluid m-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-style mb-30">
+                    <div class="table-wrapper table-responsive">
+                        <table class="table">
+                            <thead>
+                                <th> Title </th>
+                                <th> Image </th>
+                                <th> Slug </th>
+                                <th> Content </th>
+                                <th> Publish Status </th>
+                            </thead>
+                            <tbody>
+                                <% if(AllBlogs.length>= 1) { %>
+                                    <% AllBlogs.forEach(blog=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= blog.title %>
+                                            </td>
+                                            <td>
+                                                <%= blog.Image %>
+                                            </td>
+                                            <td>
+                                                <%= blog.slug %>
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#contentModal">
+                                                    content
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="contentModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="contentModal" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="contentModal">Modal
+                                                                    title</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ...
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <% if(blog.isPublish=='true' ) { %>
+                                                    <span class="status-btn active-btn">true</span>
+                                                    <% } else { %>
+                                                        <span class="status-btn deactive-btn">false</span>
+                                                        <% } %>
+
+                                            </td>
+                                        </tr>
+
+                                        <% }) %>
+
+                                            <% } else { %>
+                                                <tr>
+                                                    <td>
+                                                        No Blogs
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
