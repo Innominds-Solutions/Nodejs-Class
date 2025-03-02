@@ -1,0 +1,37 @@
+<div class="container-fluid ">
+    <div class="py-3 d-flex justify-content-between">
+        <% counts.forEach(count => { %>    
+            <div class="card w-25 " style="text-align: center;">
+                <div class="card-body">
+                    <h5 class="card-title"><%= count.Table %></h5>
+                    <p class="card-text"><%= count.count %></p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <div class="card p-3 ">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Content</th>
+                <th scope="col"> Status </th>
+              </tr>
+            </thead>
+            <tbody>
+                <% activeBlogs.forEach(activeBlog => { %>
+                    <tr>
+                        <td><%= activeBlog.title %></td>
+                        <td><a href="/<%= activeBlog.slug %>"> <%= activeBlog.slug %> </a></td>
+                        <td><%= activeBlog.content %></td>
+                        <td><%= activeBlog.isPublish %></td>
+                    </tr>
+                <% }) %>
+
+            </tbody>
+          </table>
+    </div>
+
+</div>

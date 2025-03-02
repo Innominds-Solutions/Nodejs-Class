@@ -6,8 +6,7 @@ router.get("/", HomePage);
 // router.get("/about", AboutPage);
 router.get("/login", LoginPage)
 router.delete("/logout", LoginPage)
-router.get("/signup", SignupPage)
-router.get("/add-blogs", isLoggedIn, AddBlogsPage);
+router.get("/signup", SignupPage);
 router.get("/:slug", GetOneBlogs);
 
 module.exports = router;

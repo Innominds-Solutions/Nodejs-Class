@@ -67,15 +67,7 @@ exports.SignupPage = CatchAsync(async (req, res) => {
     res.render("Pages/Authentication/Signup/Signup.ejs");
 })
 
-exports.AddBlogsPage = CatchAsync(async (req, res) => {
-    const CategoryList = await CategoryModel.find({
-        isActive: true
-    });
 
-    res.render("Pages/Add_Blogs/Add_Blogs.ejs", {
-        CategoryList
-    });
-})
 
 exports.GetOneBlogs = CatchAsync(async (req, res) => {
     const slug = req.params.slug;

@@ -1,67 +1,30 @@
-<link rel="stylesheet" href="./../../../css/Signup.css">
-
-<main class="main-wrapper">
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-7 col-md-7 col-6">
-                    <div class="header-right">
-
-                        <!-- profile start -->
-                        <div class="profile-box ml-15">
-                            <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="profile-info">
-                                    <div class="info">
-                                        <div class="image">
-                                            <img src="assets/images/profile/profile-image.png" alt="" />
-                                        </div>
-                                        <div>
-                                            <h6 class="fw-500">Adam Joe</h6>
-                                            <p>Admin</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </button>
-
-                        </div>
-                        <!-- profile end -->
-                    </div>
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="w-50 card p-4 my-3">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter Title</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Enter your title">
         </div>
-    </header>
-    <div class="signup-container">
-        <div id="user-account-signup">
-            <h2>Add Blogs</h2>
-            <div>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" placeholder="Enter your title">
-            </div>
-            <div>
-                <label for="Category">Category</label>
-                <select name="Category" id="Category" style="width: 100%;">
-                    <% if(CategoryList) {%>
-                        <% CategoryList.forEach(category=> { %>
-                            <option value="<%= category.name %>">
-                                <%= category.name %>
-                            </option>
-                            <% })%>
-                                <% }%>
-                </select>
-            </div>
-            <div>
-                <label for="Content">Content / Description</label>
-                <textarea style="width: 100%;" name="Content" id="Content"></textarea>
-            </div>
-            <div>
-                <label for="image">Upload Image</label>
-                <input type="file" name="image" id="Image" placeholder="Enter Your Blogs Image">
-            </div>
-            <button id="Add-Blogs-Button">Add Blogs</button>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Enter Description</label>
+            <textarea class="form-control" name="Content" id="Content"rows="3"></textarea>
+        </div>
+        <div class="input-group mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter Title</label>
+            <select class="form-select" id="Category">
+                <% CategoryList.forEach(category => { %>
+                    <option value="<%= category.name %>"><%= category.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" name="image" id="Image" placeholder="Enter Your Blogs Image">
+        </div>
+        <div class="input-group mb-3">
+            <button id="Add-Blogs-Button" class="btn btn-primary" type="submit">Button</button>
         </div>
     </div>
-</main>
+</div>
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 
@@ -75,13 +38,14 @@
         // setting up the inserted data into form data
         console.log(image.files);
 
-
+        console.log(title, Category, content, image.files[0]);
         const formData = new FormData();
         formData.append("title", title);
         formData.append("Category", Category);
         formData.append("content", content);
         formData.append("blog_image", image.files[0]);
         formData.append("isPublish", true);
+
 
         const upload_blogs = await axios({
             method: "POST",

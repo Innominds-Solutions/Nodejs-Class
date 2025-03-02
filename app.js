@@ -60,7 +60,7 @@ app.use("/", ViewRouter);
 // localhost:8001/hello-world
 // app.use("prefix", Router_Path);
 
-app.set("layout", "Admin/AdminLayout")
+app.set("layout", "Layouts")
 
 app.use("/admin", AdminRouter);
 
